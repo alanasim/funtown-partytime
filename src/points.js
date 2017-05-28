@@ -49,6 +49,7 @@
       y: hipLineA.y
     }
 
+  export const bustLine = o.y + 21.5
   export const bustLineA = {
     x: leftLine,
     y: o.y + 21.5
@@ -59,6 +60,7 @@
       y: bustLineA.y
     }
 
+  export const backLine = o.y + 11
   export const backLineA = {
     x: leftLine,
     y: o.y + 11
@@ -83,6 +85,8 @@
     x: leftLine + neckWidth,
     y: o.y - 2
   }
+
+  export const vertArmConstructionLine = leftLine + 0.5 * backWidth
 
   export const armConstructionLineA = {
     x: leftLine + 0.5 * backWidth,
