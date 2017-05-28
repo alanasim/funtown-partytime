@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3": "^4.9.1",
+    "d3-shape": "^1.2.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-faux-dom": "^3.1.0"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
