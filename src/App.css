@@ -22,3 +22,9 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.grid-lines path {
+  stroke: steelBlue;
+  stroke-width: 1;
+  opacity: 0.2;
+}

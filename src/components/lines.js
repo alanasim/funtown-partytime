@@ -68,9 +68,38 @@ class CurvedLine extends Component {
   }
 }
 
+export function Grid(props) {
+  const { width, height, scale } = props
+
+  let verticalLines = []
+  for (let i = 1; i <= width; i++) {
+    const coords = [{x: i, y: 0}, {x: i, y: height}]
+    const line = <Line key={"v" + i} scale={scale} coords={coords} />
+    verticalLines.push(line)
+  }
+  let horizontalLines = []
+  for (let i = 1; i <= height; i++) {
+    const coords = [{x: 0, y: i}, {x: width, y: i}]
+    const line = <Line key={"h" + i} scale={scale} coords={coords} />
+    horizontalLines.push(line)
+  }
+  return (
+    <g className="grid-lines">
+      {verticalLines}
+      {horizontalLines}
+    </g>
+    )
+}
+
 export function CenterBack(props) {
     return (
       <Line {...props} coords={[points.o, points.hipLineA]} />
+      )
+};
+
+export function CenterFront(props) {
+    return (
+      <Line {...props} coords={[points.frontO, points.hipLineB]} />
       )
 };
 
@@ -137,4 +166,68 @@ export function BackArmhole(props) {
     <CurvedLine {...props} coords={constructionPoints} curveFunc={d3.curveMonotoneY}/>
     )
 }
+
+export function StraightUnderarmSeam(props) {
+    return (
+      <Line {...props} coords={[points.underArmPoint, points.hipPoint]} />
+      )
+};
+
+export function FrontShoulderLine(props) {
+    return (
+      <Line {...props} coords={[points.frontShoulderLineA, points.frontShoulderLineB]} />
+      )
+};
+
+export function ChestLine(props) {
+    return (
+      <Line {...props} coords={[points.chestLineA, points.chestLineB]} />
+      )
+};
+
+export function FrontNeckLineBase(props) {
+    return (
+      <Line {...props} coords={[points.frontNeckLineBaseA, points.frontNeckLineBaseB]} />
+      )
+};
+
+export function FrontNeckLine(props) {
+  const constructionPoints = [
+    points.frontNeckPoint,
+    // {x: points.frontNeckPoint.x + Math.sqrt(4.5),
+    //   y: points.frontNeckLineBase - Math.sqrt(4.5)},
+    {x: points.frontNeckPoint.x + 2,
+      y: points.frontNeckLineBase - 2},
+    {x: points.frontNeckLineBaseA.x - 1,
+      y: points.frontNeckLineBaseA.y},
+    points.frontNeckLineBaseA
+  ]
+  return (
+    <CurvedLine {...props} coords={constructionPoints} curveFunc={d3.curveNatural}/>
+    )
+}
+
+export function FrontShoulderSeam(props) {
+    return (
+      <Line {...props} coords={[points.frontNeckPoint, points.frontShoulderSeamB]} />
+      )
+};
+
+export function FrontVerticalReference(props) {
+    return (
+      <Line {...props} coords={[points.frontVertReferenceA, points.frontVertReferenceB]} />
+      )
+};
+
+export function ShoulderInnerDartLine(props) {
+    return (
+      <Line {...props} coords={[points.innerShoulderDartLineA, points.innerShoulderDartLineB]} />
+      )
+};
+
+export function ShoulderOuterDartLine(props) {
+    return (
+      <Line {...props} coords={[points.outerShoulderDartLineA, points.outerShoulderDartLineB]} />
+      )
+};
 
