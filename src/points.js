@@ -74,6 +74,7 @@
     y: o.y
   }
 
+  export const waistLine = o.y + lengthToWaist
   export const waistLineA = {
     x: leftLine,
     y: o.y + lengthToWaist
@@ -316,4 +317,22 @@
     x: chestPoint.x - 1.5 * Math.sin((45 * Math.PI)/180),
     y: bustLine - 1.5 * Math.sin((45 * Math.PI)/180)
   }
+
+  export const frontHipPoint = {
+    x: rightLine - (0.25 * hips + 3.5),
+    y: hipLine
+  }
+
+  const backStraightUnderarmSeam = [hipPoint, underArmPoint]
+  export const frontStraightUnderarmSeam = [frontHipPoint, frontUnderarmPoint]
+
+  export const backOuterWaistPoint = {
+    x: lineIntersection(backStraightUnderarmSeam, [waistLineA, waistLineB]).x - 2,
+    y: waistLine
+  }  
+
+  export const frontOuterWaistPoint = () => {
+    return {x: lineIntersection([waistLineA, waistLineB], frontStraightUnderarmSeam).x + 1.5,
+        y: waistLine}
+  }  
 // }

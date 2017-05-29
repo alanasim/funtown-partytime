@@ -39,7 +39,7 @@ class CurvedLine extends Component {
       // .curve(d3.curveBasis)
       .curve(curveFunc)
 
-    g.append('path')
+    const path = g.append('path')
         .datum(coords)
         .attr('class', className)
         .attr('stroke', 'black')
@@ -57,6 +57,37 @@ class CurvedLine extends Component {
       .attr("cy", d => scale.y(d.y))
       .attr("r", 2.5)
       .style("fill", "blue")
+
+    const pathEl = path.node()
+    if(className == "special") {
+      const pathLength = pathEl.getTotalLength()
+      const testTarget = pathEl.getPointAtLength(scale.y(2))
+      let start = 0
+      let end = pathLength
+      let finalPoint;
+      let targetY = scale.y(43)
+      while (finalPoint == undefined) {
+        let targetLength = (Math.floor((start + end) / 2))
+        let pos = pathEl.getPointAtLength(targetLength)
+        if ((targetLength === end || targetLength === start) && pos.y !== targetY) {
+            finalPoint = pos;
+            console.log({x: scale.x.invert(pos.x), y: scale.y.invert(pos.y)})
+        }
+        if (pos.y > targetY) {end = targetLength}
+        else if (pos.y < targetY) {start = targetLength}
+        else {
+          finalPoint = pos
+        } //position found
+      }
+      g.append('g')
+        .attr('class', 'test-target')
+        .append("circle")
+        .datum(finalPoint)
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y)
+        .attr("r", 2.5)
+        .style("fill", "orange")
+    }
   }
 
   render() {
@@ -297,5 +328,33 @@ export function FrontArmhole(props) {
   ]
   return (
     <CurvedLine {...props} coords={constructionPoints} curveFunc={d3.curveBasis}/>
+    )
+}
+
+export function FrontStraightUnderarmSeam(props) {
+    return (
+      <Line {...props} coords={points.frontStraightUnderarmSeam} />
+      )
+};
+
+export function BackShapedUnderarmSeam(props) {
+  const constructionPoints = [
+    points.underArmPoint,
+    points.backOuterWaistPoint,
+    points.hipPoint
+  ]
+  return (
+    <CurvedLine {...props} coords={constructionPoints} curveFunc={d3.curveMonotoneY}/>
+    )
+}
+
+export function FrontShapedUnderarmSeam(props) {
+  const constructionPoints = [
+    points.frontUnderarmPoint,
+    points.frontOuterWaistPoint(),
+    points.frontHipPoint
+  ]
+  return (
+    <CurvedLine {...props} coords={constructionPoints} curveFunc={d3.curveNatural}/>
     )
 }

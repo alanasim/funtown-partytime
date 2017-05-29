@@ -45,6 +45,7 @@ class Chart extends Component {
           <Lines.ShoulderSeam scale={this.scales()} className={"wl"} />
           <Lines.BackArmhole scale={this.scales()} className={"wl"} />
           <Lines.StraightUnderarmSeam scale={this.scales()} className={"wl"} />
+          <Lines.BackShapedUnderarmSeam scale={this.scales()} className={"wl"} />
 
           
           <Lines.FrontShoulderLine scale={this.scales()} className={"wl"} />
@@ -65,6 +66,8 @@ class Chart extends Component {
           <Lines.FrontArmGuideB scale={this.scales()} className={"guide-line"} />
           <Lines.FrontArmGuideC scale={this.scales()} className={"guide-line"} />
           <Lines.FrontArmhole scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontStraightUnderarmSeam scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontShapedUnderarmSeam scale={this.scales()} className={"special"} />
         </svg>
       </div>
       )
