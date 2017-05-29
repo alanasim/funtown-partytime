@@ -1,17 +1,19 @@
 // class Points {
+  import { store } from './index.js'
 
-  export const bust = 92
-  export const hips = 98
-  export const waist = 70
-  export const lengthToWaist = 40
-  export const backWidth = 36
-  export const chestWidth = 38
-  export const shoulder = 12.5
-  export const topArm = 30
-  export const neckWidth = 7
-  // export const underArmPoint = 5.5
-  export const xBackAddition = 5.5
-  export const shoulderDartWidth = 7.5
+  // const measurements = store.measurements
+  const bust = 92
+  const hips = 98
+  const waist = 70
+  const lengthToWaist = 40
+  const backWidth = 36
+  const chestWidth = 38
+  const shoulder = 12.5
+  const topArm = 30
+  const neckWidth = 7
+  // rt const underArmPoint = 5.5
+  const xBackAddition = 5.5
+  const shoulderDartWidth = 7.5
 
   function calcM(pointA, pointB) {
     return (pointB.y - pointA.y) / (pointB.x - pointA.x)
@@ -334,5 +336,10 @@
   export const frontOuterWaistPoint = () => {
     return {x: lineIntersection([waistLineA, waistLineB], frontStraightUnderarmSeam).x + 1.5,
         y: waistLine}
-  }  
+  }
+
+  export const backLowerWaistLineA = {
+    x: leftLine,
+    y: waistLine
+  }
 // }
