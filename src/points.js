@@ -14,6 +14,25 @@
   export const shoulderDartWidth = 7.5
 
 
+  function lineIntersection(pointsA, pointsB) {
+    // y = mx + b
+    // m = point2y
+    const [point1, point2] = pointsA
+    const mA = (point2.y - point1.y) / (point2.x - point1.x)
+    const bA = point1.y - mA * point1.x
+    const [point3, point4] = pointsB
+    const mB = (point4.y - point3.y) / (point4.x - point3.x)
+    const bB = point3.y - mB * point3.x
+
+    const x = (bB - bA) / (mA - mB)
+    const y = mA * x + bA
+    return {x: x, y: y}
+  }
+
+  function lengthEq(pointA, pointB) {
+    return Math.sqrt(Math.pow(pointB.x - pointA.x, 2) + Math.pow(pointB.y - pointA.y, 2))
+  }
+
   export const topLine = 0;
 
   export const leftLine = 2;
@@ -172,10 +191,11 @@
 
   export const frontShoulderSeamA = frontNeckPoint
 
-  export const frontShoulderSeamB = {
-    x: frontNeckPoint.x - 20 * Math.cos(shoulderTheta),
-    y: frontO.y - 20 * Math.sin(shoulderTheta)
-  }
+  // export const frontShoulderSeamB = {
+  //   x: frontNeckPoint.x - 20 * Math.cos(shoulderTheta),
+  //   y: frontO.y - 20 * Math.sin(shoulderTheta)
+  // }
+
 
   export const frontVertReference = rightLine - 0.25 * chestWidth
 
@@ -202,5 +222,44 @@
   }
 
   export const outerShoulderDartLineB = innerShoulderDartLineB
+
+  export const frontShoulderPoint = {
+    x: frontNeckPoint.x - (shoulderDartWidth + shoulder) * Math.cos(shoulderTheta),
+    y: frontNeckPoint.y - (shoulderDartWidth + shoulder) * Math.sin(shoulderTheta)
+  }
+
+  export const frontShoulderSeamB = frontShoulderPoint
+
+  const rotationPoint = innerShoulderDartLineB
+  const prevTheta = Math.atan((rotationPoint.x - outerShoulderDartLineA.x)/(rotationPoint.y - outerShoulderDartLineA.y))
+  const newTheta = Math.atan((rotationPoint.x - innerShoulderDartLineA.x)/(rotationPoint.y - innerShoulderDartLineA.y))
+  const rotationTheta = prevTheta - newTheta
+
+  function rotatedPoint(rotP, initP, rotationTheta) {
+    const fullTheta = Math.atan((rotP.x - initP.x)/(rotP.y - initP.y))
+    const d = (rotP.x - initP.x) / Math.sin(fullTheta)
+    const dTheta = fullTheta - rotationTheta
+    const dX = Math.sin(dTheta) * d
+    const dY = Math.cos(dTheta) * d
+    const finalPoint = {x: rotP.x - dX, y: rotP.y - dY}
+    return finalPoint
+  }
+
+
+  export const frontShoulderPointR = rotatedPoint(rotationPoint, frontShoulderPoint, rotationTheta)
+  export const outerShoulderDartLineR = rotatedPoint(rotationPoint, outerShoulderDartLineA, rotationTheta)
+
+  export const frontShoulderSeamR = [frontNeckPoint, frontShoulderPointR]
+
+  export const newInnerShoulderDartLineA = lineIntersection([innerShoulderDartLineA, innerShoulderDartLineB], frontShoulderSeamR)
+
+  export const newOuterShoulderDartLineA = rotatedPoint(rotationPoint, newInnerShoulderDartLineA, -rotationTheta)
+
+  export const dartMidline = [innerShoulderDartLineB, rotatedPoint(rotationPoint, outerShoulderDartLineA, (rotationTheta * 0.5))]
+
+  export const extendedDartMidlineA = lineIntersection(dartMidline, [newOuterShoulderDartLineA, frontShoulderPoint])
+  export const extendedDartMidline = [extendedDartMidlineA, outerShoulderDartLineB]
+
+
 
 // }

@@ -55,6 +55,12 @@ class Chart extends Component {
           <Lines.FrontVerticalReference scale={this.scales()} className={"wl"} />
           <Lines.ShoulderInnerDartLine scale={this.scales()} className={"wl"} />
           <Lines.ShoulderOuterDartLine scale={this.scales()} className={"wl"} />
+
+          
+          <Lines.FrontShoulderSeamRA scale={this.scales()} className={"rotated"} />
+          <Lines.FrontShoulderSeamRB scale={this.scales()} className={"rotated"} />
+          <Lines.DartMidline scale={this.scales()} className={"rotated midline"} />
+          <Lines.DartLine scale={this.scales()} className={"rotated midline"} />
         </svg>
       </div>
       )

@@ -221,13 +221,49 @@ export function FrontVerticalReference(props) {
 
 export function ShoulderInnerDartLine(props) {
     return (
-      <Line {...props} coords={[points.innerShoulderDartLineA, points.innerShoulderDartLineB]} />
+      <Line {...props} coords={[points.newInnerShoulderDartLineA, points.innerShoulderDartLineB]} />
       )
 };
 
 export function ShoulderOuterDartLine(props) {
     return (
-      <Line {...props} coords={[points.outerShoulderDartLineA, points.outerShoulderDartLineB]} />
+      <Line {...props} coords={[points.newOuterShoulderDartLineA, points.outerShoulderDartLineB]} />
+      )
+};
+
+export function RotationTest(props) {
+    return (
+      <Line {...props} coords={[points.frontNeckPoint, points.frontShoulderPointR]} />
+      )
+};
+
+export function RotationTestII(props) {
+    return (
+      <Line {...props} coords={[points.outerShoulderDartLineA, points.outerShoulderDartLineR]} />
+      )
+};
+
+export function FrontShoulderSeamRA(props) {
+    return (
+      <Line {...props} coords={[points.newInnerShoulderDartLineA, points.frontNeckPoint]} />
+      )
+};
+
+export function FrontShoulderSeamRB(props) {
+    return (
+      <Line {...props} coords={[points.extendedDartMidlineA, points.frontShoulderPoint]} />
+      )
+};
+
+export function DartMidline(props) {
+    return (
+      <Line {...props} coords={points.extendedDartMidline} />
+      )
+};
+
+export function DartLine(props) {
+    return (
+      <Line {...props} coords={[points.extendedDartMidlineA, points.newInnerShoulderDartLineA]} />
       )
 };
 
