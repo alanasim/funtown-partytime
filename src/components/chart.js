@@ -59,8 +59,12 @@ class Chart extends Component {
           
           <Lines.FrontShoulderSeamRA scale={this.scales()} className={"rotated"} />
           <Lines.FrontShoulderSeamRB scale={this.scales()} className={"rotated"} />
-          <Lines.DartMidline scale={this.scales()} className={"rotated midline"} />
           <Lines.DartLine scale={this.scales()} className={"rotated midline"} />
+          <Lines.DartMidline scale={this.scales()} className={"rotated midline"} />
+          <Lines.FrontArmGuideA scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontArmGuideB scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontArmGuideC scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontArmhole scale={this.scales()} className={"guide-line"} />
         </svg>
       </div>
       )

@@ -239,7 +239,7 @@ export function RotationTest(props) {
 
 export function RotationTestII(props) {
     return (
-      <Line {...props} coords={[points.outerShoulderDartLineA, points.outerShoulderDartLineR]} />
+      <Line {...props} coords={[points.chestPoint, points.chestPointB]} />
       )
 };
 
@@ -267,3 +267,35 @@ export function DartLine(props) {
       )
 };
 
+export function FrontArmGuideA(props) {
+    return (
+      <Line {...props} coords={[points.frontShoulderPoint, points.chestPoint]} />
+      )
+};
+
+export function FrontArmGuideB(props) {
+    return (
+      <Line {...props} coords={[points.chestPoint, {x: points.chestPoint.x, y: points.bustLine}]} />
+      )
+};
+
+export function FrontArmGuideC(props) {
+    return (
+      <Line {...props} coords={[points.frontArmRefA, points.frontArmRefB]} />
+      )
+};
+
+export function FrontArmhole(props) {
+  const constructionPoints = [
+    points.frontShoulderPoint,
+    points.frontArmRefB,
+    points.chestPoint,
+    points.frontArmRefC,
+    {x: points.frontUnderarmPoint.x + 1.5,
+      y: points.bustLine + 0.5},
+    points.frontUnderarmPoint
+  ]
+  return (
+    <CurvedLine {...props} coords={constructionPoints} curveFunc={d3.curveBasis}/>
+    )
+}

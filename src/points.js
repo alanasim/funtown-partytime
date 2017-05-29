@@ -13,6 +13,13 @@
   export const xBackAddition = 5.5
   export const shoulderDartWidth = 7.5
 
+  function calcM(pointA, pointB) {
+    return (pointB.y - pointA.y) / (pointB.x - pointA.x)
+  }
+
+  function calcB(point, m) {
+    return point.y - m * point.x
+  }
 
   function lineIntersection(pointsA, pointsB) {
     // y = mx + b
@@ -31,6 +38,24 @@
 
   function lengthEq(pointA, pointB) {
     return Math.sqrt(Math.pow(pointB.x - pointA.x, 2) + Math.pow(pointB.y - pointA.y, 2))
+  }
+
+  function midpoint(pointA, pointB) {
+    return {x: (pointA.x + pointB.x) / 2, y: (pointA.y + pointB.y) / 2}
+  }
+
+  function perpendicular(pointA, pointB, length) {
+    const mA = calcM(pointA, pointB)
+    const mP = (-1 / mA)
+    const midpnt = midpoint(pointA, pointB)
+    const bP = calcB(midpnt, mP)
+    const point2 = {}
+    point2.x = (midpnt.x + 3)
+    point2.y = mP * point2.x + bP
+    const theta = Math.atan((point2.y - midpnt.y) / (point2.x - midpnt.x))
+    const finalX = (Math.sin(theta)*length - bP + midpnt.y) / mP
+    const finalY = mP * finalX + bP
+    return {x: finalX, y: finalY}
   }
 
   export const topLine = 0;
@@ -260,6 +285,35 @@
   export const extendedDartMidlineA = lineIntersection(dartMidline, [newOuterShoulderDartLineA, frontShoulderPoint])
   export const extendedDartMidline = [extendedDartMidlineA, outerShoulderDartLineB]
 
+  export const testPointA = lineIntersection([chestLineA, chestLineB], [outerShoulderDartLineB, newOuterShoulderDartLineA])
+  export const testPointB = rotatedPoint(rotationPoint, testPointA, rotationTheta)
+  const dartWidthAtChestLine = () => {
+    const pointA = lineIntersection([chestLineA, chestLineB], [outerShoulderDartLineB, newOuterShoulderDartLineA])
+    const pointB = rotatedPoint(rotationPoint, pointA, rotationTheta)
+    return lengthEq(pointA, pointB)
+  }
 
+  export const chestPoint = {
+    x: rightLine - 0.5 * chestWidth - dartWidthAtChestLine(),
+    y: chestLine
+  }
 
+  export const chestPointB = {
+    x: rightLine - 0.5 * chestWidth,
+    y: chestLine
+  }
+
+  const patternBustWidth = 0.5 * bust + 5
+
+  export const frontUnderarmPoint = {
+    x: rightLine - (patternBustWidth - (0.5 * backWidth + xBackAddition)),
+    y: bustLine
+  }
+
+  export const frontArmRefA = midpoint(chestPoint, frontShoulderPoint)
+  export const frontArmRefB = perpendicular(chestPoint, frontShoulderPoint, 1)
+  export const frontArmRefC = {
+    x: chestPoint.x - 1.5 * Math.sin((45 * Math.PI)/180),
+    y: bustLine - 1.5 * Math.sin((45 * Math.PI)/180)
+  }
 // }
