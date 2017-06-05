@@ -1,19 +1,23 @@
-// class Points {
-  import { store } from './index.js'
+import { createSelector } from 'reselect'
+
+const getMeasurements = (state) => state.measurements
+
+export const getPoints = createSelector([ getMeasurements ], (measurements) => {
 
   // const measurements = store.measurements
-  const bust = 92
-  const hips = 98
-  const waist = 70
-  const lengthToWaist = 40
-  const backWidth = 36
-  const chestWidth = 38
-  const shoulder = 12.5
-  const topArm = 30
-  const neckWidth = 7
-  // rt const underArmPoint = 5.5
-  const xBackAddition = 5.5
-  const shoulderDartWidth = 7.5
+  // const bust = 92
+  // const hips = 98
+  // const waist = 70
+  // const lengthToWaist = 40
+  // const backWidth = 36
+  // const chestWidth = 38
+  // const shoulder = 12.5
+  // const topArm = 30
+  // const neckWidth = 7
+  // // rt const underArmPoint = 5.5
+  // const xBackAddition = 5.5
+  // const shoulderDartWidth = 7.5
+  const { bust, hips, waist, lengthToWaist, backWidth, chestWidth, shoulder, topArm, neckWidth, xBackAddition, shoulderDartWidth} = measurements
 
   function calcM(pointA, pointB) {
     return (pointB.y - pointA.y) / (pointB.x - pointA.x)
@@ -60,203 +64,203 @@
     return {x: finalX, y: finalY}
   }
 
-  export const topLine = 0;
+  const topLine = 0;
 
-  export const leftLine = 2;
+  const leftLine = 2;
 
-  export const rightLine = 60;
+  const rightLine = 60;
 
-  export const o = {
+  const o = {
               x: leftLine,
               y: 3
             }
 
-  export const neckLineB = {
+  const neckLineB = {
     x: 11,
     y: o.y
   }
 
-  export const waistLine = o.y + lengthToWaist
-  export const waistLineA = {
+  const waistLine = o.y + lengthToWaist
+  const waistLineA = {
     x: leftLine,
     y: o.y + lengthToWaist
   }
 
-    export const waistLineB = {
+    const waistLineB = {
       x: rightLine,
       y: waistLineA.y
     }
 
-  export const hipLine = waistLineA.y + 22
-  export const hipLineA = {
+  const hipLine = waistLineA.y + 22
+  const hipLineA = {
     x: leftLine,
     y: waistLineA.y + 22
   }
 
-    export const hipLineB = {
+    const hipLineB = {
       x: rightLine,
       y: hipLineA.y
     }
 
-  export const bustLine = o.y + 21.5
-  export const bustLineA = {
+  const bustLine = o.y + 21.5
+  const bustLineA = {
     x: leftLine,
     y: o.y + 21.5
   }
 
-    export const bustLineB = {
+    const bustLineB = {
       x: rightLine,
       y: bustLineA.y
     }
 
-  export const backLine = o.y + 11
-  export const backLineA = {
+  const backLine = o.y + 11
+  const backLineA = {
     x: leftLine,
     y: o.y + 11
   }
 
-    export const backLineB = {
+    const backLineB = {
       x: leftLine + (rightLine - leftLine) * 0.4,
       y: backLineA.y
     }
 
-  export const shoulderLineA = {
+  const shoulderLineA = {
     x: leftLine,
     y: o.y + 3
   }
 
-    export const shoulderLineB = {
+    const shoulderLineB = {
       x: leftLine + (rightLine - leftLine) * 0.4,
       y: shoulderLineA.y
     }
 
-  export const neckPoint = {
+  const neckPoint = {
     x: leftLine + neckWidth,
     y: o.y - 2
   }
 
-  export const vertArmConstructionLine = leftLine + 0.5 * backWidth
+  const vertArmConstructionLine = leftLine + 0.5 * backWidth
 
-  export const armConstructionLineA = {
+  const armConstructionLineA = {
     x: leftLine + 0.5 * backWidth,
     y: shoulderLineA.y - 0.5
   }
 
-    export const armConstructionLineB = {
+    const armConstructionLineB = {
       x: leftLine + 0.5 * backWidth,
       y: bustLineA.y + 0.5
     }
   
-  export const underArmPoint = {
+  const underArmPoint = {
     x: leftLine + 0.5 * backWidth + xBackAddition,
     y: bustLineA.y
   }
 
-  export const shoulderPoint = {
+  const shoulderPoint = {
     x: leftLine + 0.5 * backWidth + 2,
     y: shoulderLineA.y
   }
 
-  export const shoulderSeamA = neckPoint
+  const shoulderSeamA = neckPoint
 
-  export const shoulderSeamB = shoulderPoint
+  const shoulderSeamB = shoulderPoint
 
-  export const hipPoint = {
+  const hipPoint = {
     x: leftLine + 0.25 * hips,
     y: hipLine
   }
 
-  export const frontO = {
+  const frontO = {
     x: rightLine,
     y: topLine
   }
 
-  export const frontShoulderLine = frontO.y + 4.5
-  export const frontNeckLineBase = frontO.y + 7.5
-  export const chestLine = bustLine - 4
+  const frontShoulderLine = frontO.y + 4.5
+  const frontNeckLineBase = frontO.y + 7.5
+  const chestLine = bustLine - 4
 
-  export const frontShoulderLineA = {
+  const frontShoulderLineA = {
     x: rightLine,
     y: frontShoulderLine
   }
 
-  export const frontShoulderLineB = {
+  const frontShoulderLineB = {
     x: rightLine - (rightLine - leftLine) * 0.4,
     y: frontShoulderLine
   }
 
-  export const chestLineA = {
+  const chestLineA = {
     x: rightLine,
     y: chestLine
   }
 
-  export const chestLineB = {
+  const chestLineB = {
     x: rightLine - (rightLine - leftLine) * 0.4,
     y: chestLine
   }
 
-  export const frontNeckLineBaseA = {
+  const frontNeckLineBaseA = {
     x: rightLine,
     y: frontNeckLineBase
   }
 
-  export const frontNeckLineBaseB = {
+  const frontNeckLineBaseB = {
     x: rightLine - 11,
     y: frontNeckLineBase
   }
 
-  export const frontNeckPoint = {
+  const frontNeckPoint = {
     x: frontO.x - neckWidth,
     y: frontO.y
   }
 
-  export const shoulderReference = {
+  const shoulderReference = {
     x: frontO.x - 16.5,
     y: frontShoulderLine
   }
 
   const shoulderTheta = Math.atan((shoulderReference.y - frontNeckPoint.y)/(shoulderReference.x - frontNeckPoint.x))
 
-  export const frontShoulderSeamA = frontNeckPoint
+  const frontShoulderSeamA = frontNeckPoint
 
-  // export const frontShoulderSeamB = {
+  // const frontShoulderSeamB = {
   //   x: frontNeckPoint.x - 20 * Math.cos(shoulderTheta),
   //   y: frontO.y - 20 * Math.sin(shoulderTheta)
   // }
 
 
-  export const frontVertReference = rightLine - 0.25 * chestWidth
+  const frontVertReference = rightLine - 0.25 * chestWidth
 
-  export const frontVertReferenceA = {
+  const frontVertReferenceA = {
     x: frontVertReference,
     y: bustLine + 2
   }
 
-  export const frontVertReferenceB = {
+  const frontVertReferenceB = {
     x: frontVertReference,
     y: frontNeckPoint.y + (frontVertReference - frontNeckPoint.x) * Math.tan(shoulderTheta)
   }
 
-  export const innerShoulderDartLineA = {
+  const innerShoulderDartLineA = {
     x: frontVertReferenceB.x - 2 * Math.cos(shoulderTheta),
     y: frontVertReferenceB.y - 2 * Math.sin(shoulderTheta)
   }
 
-  export const innerShoulderDartLineB = frontVertReferenceA
+  const innerShoulderDartLineB = frontVertReferenceA
 
-  export const outerShoulderDartLineA = {
+  const outerShoulderDartLineA = {
     x: innerShoulderDartLineA.x - shoulderDartWidth * Math.cos(shoulderTheta),
     y: innerShoulderDartLineA.y - shoulderDartWidth * Math.sin(shoulderTheta)
   }
 
-  export const outerShoulderDartLineB = innerShoulderDartLineB
+  const outerShoulderDartLineB = innerShoulderDartLineB
 
-  export const frontShoulderPoint = {
+  const frontShoulderPoint = {
     x: frontNeckPoint.x - (shoulderDartWidth + shoulder) * Math.cos(shoulderTheta),
     y: frontNeckPoint.y - (shoulderDartWidth + shoulder) * Math.sin(shoulderTheta)
   }
 
-  export const frontShoulderSeamB = frontShoulderPoint
+  const frontShoulderSeamB = frontShoulderPoint
 
   const rotationPoint = innerShoulderDartLineB
   const prevTheta = Math.atan((rotationPoint.x - outerShoulderDartLineA.x)/(rotationPoint.y - outerShoulderDartLineA.y))
@@ -274,72 +278,109 @@
   }
 
 
-  export const frontShoulderPointR = rotatedPoint(rotationPoint, frontShoulderPoint, rotationTheta)
-  export const outerShoulderDartLineR = rotatedPoint(rotationPoint, outerShoulderDartLineA, rotationTheta)
+  const frontShoulderPointR = rotatedPoint(rotationPoint, frontShoulderPoint, rotationTheta)
+  const outerShoulderDartLineR = rotatedPoint(rotationPoint, outerShoulderDartLineA, rotationTheta)
 
-  export const frontShoulderSeamR = [frontNeckPoint, frontShoulderPointR]
+  const frontShoulderSeamR = [frontNeckPoint, frontShoulderPointR]
 
-  export const newInnerShoulderDartLineA = lineIntersection([innerShoulderDartLineA, innerShoulderDartLineB], frontShoulderSeamR)
+  const newInnerShoulderDartLineA = lineIntersection([innerShoulderDartLineA, innerShoulderDartLineB], frontShoulderSeamR)
 
-  export const newOuterShoulderDartLineA = rotatedPoint(rotationPoint, newInnerShoulderDartLineA, -rotationTheta)
+  const newOuterShoulderDartLineA = rotatedPoint(rotationPoint, newInnerShoulderDartLineA, -rotationTheta)
 
-  export const dartMidline = [innerShoulderDartLineB, rotatedPoint(rotationPoint, outerShoulderDartLineA, (rotationTheta * 0.5))]
+  const dartMidline = [innerShoulderDartLineB, rotatedPoint(rotationPoint, outerShoulderDartLineA, (rotationTheta * 0.5))]
 
-  export const extendedDartMidlineA = lineIntersection(dartMidline, [newOuterShoulderDartLineA, frontShoulderPoint])
-  export const extendedDartMidline = [extendedDartMidlineA, outerShoulderDartLineB]
+  const extendedDartMidlineA = lineIntersection(dartMidline, [newOuterShoulderDartLineA, frontShoulderPoint])
+  const extendedDartMidline = [extendedDartMidlineA, outerShoulderDartLineB]
 
-  export const testPointA = lineIntersection([chestLineA, chestLineB], [outerShoulderDartLineB, newOuterShoulderDartLineA])
-  export const testPointB = rotatedPoint(rotationPoint, testPointA, rotationTheta)
+  const testPointA = lineIntersection([chestLineA, chestLineB], [outerShoulderDartLineB, newOuterShoulderDartLineA])
+  const testPointB = rotatedPoint(rotationPoint, testPointA, rotationTheta)
   const dartWidthAtChestLine = () => {
     const pointA = lineIntersection([chestLineA, chestLineB], [outerShoulderDartLineB, newOuterShoulderDartLineA])
     const pointB = rotatedPoint(rotationPoint, pointA, rotationTheta)
     return lengthEq(pointA, pointB)
   }
 
-  export const chestPoint = {
+  const chestPoint = {
     x: rightLine - 0.5 * chestWidth - dartWidthAtChestLine(),
     y: chestLine
   }
 
-  export const chestPointB = {
+  const chestPointB = {
     x: rightLine - 0.5 * chestWidth,
     y: chestLine
   }
 
   const patternBustWidth = 0.5 * bust + 5
 
-  export const frontUnderarmPoint = {
+  const frontUnderarmPoint = {
     x: rightLine - (patternBustWidth - (0.5 * backWidth + xBackAddition)),
     y: bustLine
   }
 
-  export const frontArmRefA = midpoint(chestPoint, frontShoulderPoint)
-  export const frontArmRefB = perpendicular(chestPoint, frontShoulderPoint, 1)
-  export const frontArmRefC = {
+  const frontArmRefA = midpoint(chestPoint, frontShoulderPoint)
+  const frontArmRefB = perpendicular(chestPoint, frontShoulderPoint, 1)
+  const frontArmRefC = {
     x: chestPoint.x - 1.5 * Math.sin((45 * Math.PI)/180),
     y: bustLine - 1.5 * Math.sin((45 * Math.PI)/180)
   }
 
-  export const frontHipPoint = {
+  const frontHipPoint = {
     x: rightLine - (0.25 * hips + 3.5),
     y: hipLine
   }
 
   const backStraightUnderarmSeam = [hipPoint, underArmPoint]
-  export const frontStraightUnderarmSeam = [frontHipPoint, frontUnderarmPoint]
+  const frontStraightUnderarmSeam = [frontHipPoint, frontUnderarmPoint]
 
-  export const backOuterWaistPoint = {
+  const backOuterWaistPoint = {
     x: lineIntersection(backStraightUnderarmSeam, [waistLineA, waistLineB]).x - 2,
     y: waistLine
   }  
 
-  export const frontOuterWaistPoint = () => {
+  const frontOuterWaistPoint = () => {
     return {x: lineIntersection([waistLineA, waistLineB], frontStraightUnderarmSeam).x + 1.5,
         y: waistLine}
   }
 
-  export const backLowerWaistLineA = {
+  const backLowerWaistLineA = {
     x: leftLine,
     y: waistLine
   }
-// }
+
+  return {
+    o,
+    frontO,
+    hipLineA,
+    hipLineB,
+    waistLineA,
+    waistLineB,
+    bustLine, bustLineA, bustLineB,
+    backLine, backLineA, backLineB,
+    shoulderLineA, shoulderLineB,
+    neckPoint,
+    armConstructionLineA, armConstructionLineB,
+    shoulderSeamA, shoulderSeamB,
+    shoulderPoint,
+    vertArmConstructionLine,
+    underArmPoint,
+    hipPoint,
+    frontShoulderLineA, frontShoulderLineB,
+    chestLineA, chestLineB,
+    frontNeckLineBase, frontNeckLineBaseA, frontNeckLineBaseB,
+    frontNeckPoint,
+    frontShoulderSeamB,
+    frontVertReferenceA, frontVertReferenceB,
+    newInnerShoulderDartLineA, innerShoulderDartLineB,
+    newOuterShoulderDartLineA, outerShoulderDartLineB,
+    extendedDartMidlineA,
+    frontShoulderPoint,
+    extendedDartMidline,
+    chestPoint,
+    frontArmRefA, frontArmRefB, frontArmRefC,
+    frontUnderarmPoint,
+    frontStraightUnderarmSeam,
+    backOuterWaistPoint,
+    frontOuterWaistPoint,
+    frontHipPoint
+  }
+})

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3'
-import * as points from '../points.js'
+// import * as points from '../points.js'
 
 class Line extends Component {
   componentDidMount() {
@@ -123,66 +123,77 @@ export function Grid(props) {
 }
 
 export function CenterBack(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.o, points.hipLineA]} />
       )
 };
 
 export function CenterFront(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.frontO, points.hipLineB]} />
       )
 };
 
 export function WaistLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.waistLineA, points.waistLineB]} />
       )
 };
 
 export function HipLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.hipLineA, points.hipLineB]} />
       )
 };
 
 export function BustLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.bustLineA, points.bustLineB]} />
       )
 };
 
 export function BackLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.backLineA, points.backLineB]} />
       )
 };
 
 export function ShoulderLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.shoulderLineA, points.shoulderLineB]} />
       )
 };
 
 export function NeckLine(props) {
+  const points = props.points
   return (
     <CurvedLine {...props} coords={[points.o, {x: points.neckPoint.x - 2.5, y: points.o.y - 0.25}, points.neckPoint]} curveFunc={d3.curveBasis}/>
     )
 }
 
 export function ArmholeConstructionLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.armConstructionLineA, points.armConstructionLineB]} />
       )
 };
 
 export function ShoulderSeam(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.shoulderSeamA, points.shoulderSeamB]} />
       )
 };
 
 export function BackArmhole(props) {
+  const points = props.points
   const constructionPoints = [
     points.shoulderPoint,
     {x: points.vertArmConstructionLine,
@@ -199,30 +210,35 @@ export function BackArmhole(props) {
 }
 
 export function StraightUnderarmSeam(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.underArmPoint, points.hipPoint]} />
       )
 };
 
 export function FrontShoulderLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.frontShoulderLineA, points.frontShoulderLineB]} />
       )
 };
 
 export function ChestLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.chestLineA, points.chestLineB]} />
       )
 };
 
 export function FrontNeckLineBase(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.frontNeckLineBaseA, points.frontNeckLineBaseB]} />
       )
 };
 
 export function FrontNeckLine(props) {
+  const points = props.points
   const constructionPoints = [
     points.frontNeckPoint,
     // {x: points.frontNeckPoint.x + Math.sqrt(4.5),
@@ -239,84 +255,98 @@ export function FrontNeckLine(props) {
 }
 
 export function FrontShoulderSeam(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.frontNeckPoint, points.frontShoulderSeamB]} />
       )
 };
 
 export function FrontVerticalReference(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.frontVertReferenceA, points.frontVertReferenceB]} />
       )
 };
 
 export function ShoulderInnerDartLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.newInnerShoulderDartLineA, points.innerShoulderDartLineB]} />
       )
 };
 
 export function ShoulderOuterDartLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.newOuterShoulderDartLineA, points.outerShoulderDartLineB]} />
       )
 };
 
 export function RotationTest(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.frontNeckPoint, points.frontShoulderPointR]} />
       )
 };
 
 export function RotationTestII(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.chestPoint, points.chestPointB]} />
       )
 };
 
 export function FrontShoulderSeamRA(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.newInnerShoulderDartLineA, points.frontNeckPoint]} />
       )
 };
 
 export function FrontShoulderSeamRB(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.extendedDartMidlineA, points.frontShoulderPoint]} />
       )
 };
 
 export function DartMidline(props) {
+  const points = props.points
     return (
       <Line {...props} coords={points.extendedDartMidline} />
       )
 };
 
 export function DartLine(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.extendedDartMidlineA, points.newInnerShoulderDartLineA]} />
       )
 };
 
 export function FrontArmGuideA(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.frontShoulderPoint, points.chestPoint]} />
       )
 };
 
 export function FrontArmGuideB(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.chestPoint, {x: points.chestPoint.x, y: points.bustLine}]} />
       )
 };
 
 export function FrontArmGuideC(props) {
+  const points = props.points
     return (
       <Line {...props} coords={[points.frontArmRefA, points.frontArmRefB]} />
       )
 };
 
 export function FrontArmhole(props) {
+  const points = props.points
   const constructionPoints = [
     points.frontShoulderPoint,
     points.frontArmRefB,
@@ -332,12 +362,14 @@ export function FrontArmhole(props) {
 }
 
 export function FrontStraightUnderarmSeam(props) {
+  const points = props.points
     return (
       <Line {...props} coords={points.frontStraightUnderarmSeam} />
       )
 };
 
 export function BackShapedUnderarmSeam(props) {
+  const points = props.points
   const constructionPoints = [
     points.underArmPoint,
     points.backOuterWaistPoint,
@@ -349,6 +381,7 @@ export function BackShapedUnderarmSeam(props) {
 }
 
 export function FrontShapedUnderarmSeam(props) {
+  const points = props.points
   const constructionPoints = [
     points.frontUnderarmPoint,
     points.frontOuterWaistPoint(),

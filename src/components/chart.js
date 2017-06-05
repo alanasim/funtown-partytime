@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import * as d3 from 'd3'
+import { getPoints } from '../points.js'
 import * as Lines from './lines.js'
 
 const pageWidth = 68
@@ -27,51 +29,57 @@ class Chart extends Component {
   }
 
   render() {
-    const {width, height} = this.props
+    const {width, height, points} = this.props
 
     return (
       <div className="chart-wrapper">
         <svg width={width} height={height} ref={(el) => this.svgEl = el}>
           <Lines.Grid scale={this.scales()} width={pageWidth} height={pageHeight} />
-          <Lines.CenterBack scale={this.scales()} className={"cb"} />
-          <Lines.CenterFront scale={this.scales()} className={"cf"} />
-          <Lines.WaistLine scale={this.scales()} className={"wl"} />
-          <Lines.HipLine scale={this.scales()} className={"wl"} />
-          <Lines.BustLine scale={this.scales()} className={"wl"} />
-          <Lines.BackLine scale={this.scales()} className={"wl"} />
-          <Lines.ShoulderLine scale={this.scales()} className={"wl"} />
-          <Lines.NeckLine scale={this.scales()} className={"wl"} />
-          <Lines.ArmholeConstructionLine scale={this.scales()} className={"wl"} />
-          <Lines.ShoulderSeam scale={this.scales()} className={"wl"} />
-          <Lines.BackArmhole scale={this.scales()} className={"wl"} />
-          <Lines.StraightUnderarmSeam scale={this.scales()} className={"wl"} />
-          <Lines.BackShapedUnderarmSeam scale={this.scales()} className={"wl"} />
+          <Lines.CenterBack points={points} scale={this.scales()} className={"cb"} />
+          <Lines.CenterFront points={points} scale={this.scales()} className={"cf"} />
+          <Lines.WaistLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.HipLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.BustLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.BackLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.ShoulderLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.NeckLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.ArmholeConstructionLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.ShoulderSeam points={points} scale={this.scales()} className={"wl"} />
+          <Lines.BackArmhole points={points} scale={this.scales()} className={"wl"} />
+          <Lines.StraightUnderarmSeam points={points} scale={this.scales()} className={"wl"} />
+          <Lines.BackShapedUnderarmSeam points={points} scale={this.scales()} className={"wl"} />
 
           
-          <Lines.FrontShoulderLine scale={this.scales()} className={"wl"} />
-          <Lines.ChestLine scale={this.scales()} className={"wl"} />
-          <Lines.FrontNeckLineBase scale={this.scales()} className={"wl"} />
-          <Lines.FrontNeckLine scale={this.scales()} className={"wl"} />
-          <Lines.FrontShoulderSeam scale={this.scales()} className={"wl"} />
-          <Lines.FrontVerticalReference scale={this.scales()} className={"wl"} />
-          <Lines.ShoulderInnerDartLine scale={this.scales()} className={"wl"} />
-          <Lines.ShoulderOuterDartLine scale={this.scales()} className={"wl"} />
+          <Lines.FrontShoulderLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.ChestLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.FrontNeckLineBase points={points} scale={this.scales()} className={"wl"} />
+          <Lines.FrontNeckLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.FrontShoulderSeam points={points} scale={this.scales()} className={"wl"} />
+          <Lines.FrontVerticalReference points={points} scale={this.scales()} className={"wl"} />
+          <Lines.ShoulderInnerDartLine points={points} scale={this.scales()} className={"wl"} />
+          <Lines.ShoulderOuterDartLine points={points} scale={this.scales()} className={"wl"} />
 
           
-          <Lines.FrontShoulderSeamRA scale={this.scales()} className={"rotated"} />
-          <Lines.FrontShoulderSeamRB scale={this.scales()} className={"rotated"} />
-          <Lines.DartLine scale={this.scales()} className={"rotated midline"} />
-          <Lines.DartMidline scale={this.scales()} className={"rotated midline"} />
-          <Lines.FrontArmGuideA scale={this.scales()} className={"guide-line"} />
-          <Lines.FrontArmGuideB scale={this.scales()} className={"guide-line"} />
-          <Lines.FrontArmGuideC scale={this.scales()} className={"guide-line"} />
-          <Lines.FrontArmhole scale={this.scales()} className={"guide-line"} />
-          <Lines.FrontStraightUnderarmSeam scale={this.scales()} className={"guide-line"} />
-          <Lines.FrontShapedUnderarmSeam scale={this.scales()} className={"special"} />
+          <Lines.FrontShoulderSeamRA points={points} scale={this.scales()} className={"rotated"} />
+          <Lines.FrontShoulderSeamRB points={points} scale={this.scales()} className={"rotated"} />
+          <Lines.DartLine points={points} scale={this.scales()} className={"rotated midline"} />
+          <Lines.DartMidline points={points} scale={this.scales()} className={"rotated midline"} />
+          <Lines.FrontArmGuideA points={points} scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontArmGuideB points={points} scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontArmGuideC points={points} scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontArmhole points={points} scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontStraightUnderarmSeam points={points} scale={this.scales()} className={"guide-line"} />
+          <Lines.FrontShapedUnderarmSeam points={points} scale={this.scales()} className={"special"} />
         </svg>
       </div>
       )
   }
 }
 
-export default Chart;
+const mapStateToProps = (state) => {
+  return {
+    points: getPoints(state)
+  }
+}
+
+export default connect(mapStateToProps)(Chart);
