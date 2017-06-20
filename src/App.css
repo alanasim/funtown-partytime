@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  align-items: stretch;
+  justify-content: center
 }
 
 .App-logo {
@@ -21,4 +24,23 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.grid-lines path {
+  stroke: steelBlue;
+  stroke-width: 1;
+  opacity: 0.2;
+}
+
+.rotated {
+  stroke: steelBlue;
+}
+
+.chart-wrapper {
+  display: inline-block;
+}
+
+.options-container {
+  display: inline-block;
+  border: 1px dotted blue;
 }
