@@ -1,4 +1,4 @@
-const defaultMeasurements = {
+const defaults = {
   bust: 92,
   hips: 98,
   waist: 70,
@@ -7,12 +7,14 @@ const defaultMeasurements = {
   chestWidth: 38,
   shoulder: 12.5,
   topArm: 30,
+  pointOCB: 3,
+  armholeDepth: 21.5,
   neckWidth: 7,
   xBackAddition: 5.5,
   shoulderDartWidth: 7.5
 }
 
-const measurements = (state = defaultMeasurements, action) => {
+const measurements = (state = defaults, action) => {
   switch (action.type) {
     case 'CHANGE_MEASUREMENT':
       return Object.assign({}, state, action.payload)

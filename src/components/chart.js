@@ -11,7 +11,17 @@ class Chart extends Component {
   constructor() {
     super()
 
+    this.state = {
+      keyIdx: 0
+    }
+
     this.scales = this.scales.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.points !== nextProps.points) {
+      this.setState({keyIdx: this.state.keyIdx + 1})
+    }
   }
 
   scales() {
@@ -30,10 +40,11 @@ class Chart extends Component {
 
   render() {
     const {width, height, points} = this.props
+    console.log(points)
 
     return (
       <div className="chart-wrapper">
-        <svg width={width} height={height} ref={(el) => this.svgEl = el}>
+        <svg width={width} height={height} ref={(el) => this.svgEl = el} key={this.state.keyIdx}>
           <Lines.Grid scale={this.scales()} width={pageWidth} height={pageHeight} />
           <Lines.CenterBack points={points} scale={this.scales()} className={"cb"} />
           <Lines.CenterFront points={points} scale={this.scales()} className={"cf"} />

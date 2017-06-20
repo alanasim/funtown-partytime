@@ -1,8 +1,20 @@
 import { createSelector } from 'reselect'
 
-const getMeasurements = (state) => state.measurements
+const getPointOCB = (state) => state.measurements.pointOCB
+const getArmholeDepth = (state) => state.measurements.armholeDepth
+const getBust = (state) => state.measurements.bust
+const getHips = (state) => state.measurements.hips
+const getWaist = (state) => state.measurements.waist
+const getLengthToWaist = (state) => state.measurements.lengthToWaist
+const getBackWidth = (state) => state.measurements.backWidth
+const getChestWidth = (state) => state.measurements.chestWidth
+const getShoulder = (state) => state.measurements.shoulder
+const getTopArm = (state) => state.measurements.topArm
+const getNeckWidth = (state) => state.measurements.neckWidth
+const getXBackAddition = (state) => state.measurements.xBackAddition
+const getShoulderDartWidth = (state) => state.measurements.shoulderDartWidth
 
-export const getPoints = createSelector([ getMeasurements ], (measurements) => {
+export const getPoints = createSelector([ getPointOCB, getArmholeDepth, getBust, getHips, getWaist, getLengthToWaist, getBackWidth, getChestWidth, getShoulder, getTopArm, getNeckWidth, getXBackAddition, getShoulderDartWidth ], ( pointOCB, armholeDepth, bust, hips, waist, lengthToWaist, backWidth, chestWidth, shoulder, topArm, neckWidth, xBackAddition, shoulderDartWidth) => {
 
   // const measurements = store.measurements
   // const bust = 92
@@ -17,7 +29,7 @@ export const getPoints = createSelector([ getMeasurements ], (measurements) => {
   // // rt const underArmPoint = 5.5
   // const xBackAddition = 5.5
   // const shoulderDartWidth = 7.5
-  const { bust, hips, waist, lengthToWaist, backWidth, chestWidth, shoulder, topArm, neckWidth, xBackAddition, shoulderDartWidth} = measurements
+  // const { pointOCB, armholeDepth, bust, hips, waist, lengthToWaist, backWidth, chestWidth, shoulder, topArm, neckWidth, xBackAddition, shoulderDartWidth} = measurements
 
   function calcM(pointA, pointB) {
     return (pointB.y - pointA.y) / (pointB.x - pointA.x)
@@ -72,7 +84,7 @@ export const getPoints = createSelector([ getMeasurements ], (measurements) => {
 
   const o = {
               x: leftLine,
-              y: 3
+              y: pointOCB
             }
 
   const neckLineB = {
@@ -102,10 +114,10 @@ export const getPoints = createSelector([ getMeasurements ], (measurements) => {
       y: hipLineA.y
     }
 
-  const bustLine = o.y + 21.5
+  const bustLine = o.y + armholeDepth
   const bustLineA = {
     x: leftLine,
-    y: o.y + 21.5
+    y: o.y + armholeDepth
   }
 
     const bustLineB = {
